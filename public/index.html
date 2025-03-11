@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+     <!-- Bootstrap CDN -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Chat Application</title>
+</head>
+<body>
+   <main class="main-container row">
+        <div class="d-flex layout-wrapper">
+            <section class="col-lg-3 col-md-5 col-sm-6 rooms-sidebar">
+                <div class="room-list-container">
+                    <div class="rooms-header">
+                        <div class="rooms-title ms-3 mt-3">Messages</div>
+                        <div class="search-container d-flex justify-content-around align-items-center mt-4">
+                            <input type="text" placeholder="Search" id="search-bar">
+                            <div class="options-menu">
+                                <img src="icons/menu.svg" class="options-icon" alt="three-dot-icon">
+                            </div>
+                        </div>
+                        <div class="create-room-option">
+                            Create Room
+                        </div>
+                    </div>
+                    <div class="custom-modal-overlay" id="customModal">
+                        <div class="custom-modal">
+                            <div class="custom-modal-header d-flex align-items-center justify-content-between">
+                                <h5 class="custom-modal-title">Create Room</h5>
+                                <button type="button" class="close-btn">
+                                    <img src="./icons/close-icon.svg" alt="Close Icon">
+                                </button>
+                            </div>
+                            <div class="custom-modal-body mt-2">
+                                <form id="createRoomForm">
+                                    <div class="mb-3 input-box">
+                                        <label for="room-name" class="form-label">Room Name</label>
+                                        <input type="text" id="room-name" class="form-control create-room-input" autocomplete="off" placeholder="Enter room name">
+                                        <p class="error-message"></p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="custom-modal-footer d-flex justify-content-center mt-4">
+                                <button type="button" class="cancel-btn me-3">Cancel</button>
+                                <button type="button" class="create-room-btn">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rooms-list">
+                        <div class="room-list-title mt-3 ms-3">Available Rooms</div>
+                        <div class="rooms-card-group m-1 p-3" id="room-list">
+                            <div class="room-card">
+                                <img src="./icons/community-icon.png" class="room-icon" alt="room-icon" >
+                                <div class="room-details">
+                                    <div class="room-name"></div>
+                                    <div class="message-author d-flex align-items-center">
+                                        <div class="author-name"></div>
+                                        <div class="recent-msg"></div>
+                                    </div>
+                                </div>
+                                <div class="msg-info">
+                                    <span class="msg-time"></span>
+                                    <span class="msg-count d-flex justify-content-center"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="no-results-message" class="text-center mt-3" style="display: none;">No results found</div>
+                    </div>
+                </div>
+                <div class="profile-section d-flex align-items-center mb-4 ms-3">
+                    <div class="profile-icon">
+                        <span class="username-initial"></span>
+                    </div>
+                    <div class="profile-username ms-2"></div>
+                </div>
+            </section>
+            <section class="col-lg-9 col-md-7 col-sm-6 chat-room-section">
+                <div class="chat-room-layout">
+                    <div class="chat-room-header d-flex align-items-center ps-3">
+                        <div class="d-flex ms-3 align-items-center">
+                            <div class="community-icon">
+                                <img src="./icons/community-icon.png" class="room-icon" alt="room-icon">
+                            </div>
+                            <div class="chat-room-name ms-2"></div> 
+                        </div> 
+                        <div class="options-list ms-auto me-4">
+                            <img src="icons/menu.svg" class="options-icon" id="room-options-icon" alt="three-dot-icon">
+                        </div>
+                        <div class="chat-room-options">
+                            <div class="options" id="edit-info-option">Edit Info</div>
+                        </div>
+                    </div>
+                    <div class="custom-modal-overlay" id="edit-room-modal">
+                        <div class="custom-modal">
+                            <div class="custom-modal-header d-flex align-items-center justify-content-between">
+                                <h5 class="custom-modal-title">Edit Room Info</h5>
+                                <button type="button" class="close-btn">
+                                    <img src="./icons/close-icon.svg" alt="Close Icon">
+                                </button>
+                            </div>
+                            <div class="custom-modal-body mt-2">
+                                <form id="editRoomForm">
+                                    <div class="mb-3 input-box">
+                                        <label for="room-name" class="form-label">Room Name</label>
+                                        <input type="text" id="room-name" class="form-control edit-room-input" autocomplete="off" placeholder="Enter room name">
+                                        <p class="edit-error-msg" style="display: none;">Room name cannot be empty</p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="custom-modal-footer d-flex justify-content-center mt-4">
+                                <button type="button" class="cancel-btn me-3">Cancel</button>
+                                <button type="button" class="update-room-btn">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="message-section">
+                        <div class="msg-view-section">
+                            <div class="message sent-msg">
+                                <p></p>
+                                <span class="time"></span>
+                            </div>
+                            <div class="received-msg">
+                                <div class="receiver-pic">
+                                    <img src="./icons/user-icon.svg" alt="User icon">
+                                </div>
+                                <div class="message received-message-card">
+                                    <div class="username"></div>
+                                    <p></p>
+                                    <div class="time"></div>
+                                </div>
+                            </div>
+                            <div class="joined-msg"></div>
+                        </div>
+                        <div class="message-input-wrapper mt-1">
+                            <div class="text-format-section">
+                                <span class="bold-icon icons" data-format="bold" data-bs-toggle="tooltip" data-bs-title="Bold">
+                                    <img src="./icons/bold-icon.svg" alt="Bold">
+                                </span>
+                                <span class="italic-icon icons" data-format="italic" data-bs-toggle="tooltip" data-bs-title="Italic">
+                                    <img src="./icons/italic-icon.svg" alt="Italic">
+                                </span>
+                                <span class="underline-icon icons" data-format="underline" data-bs-toggle="tooltip" data-bs-title="Underline">
+                                    <img src="./icons/underline-icon.svg" alt="Underline">
+                                </span>
+                                <span class="strike_through-icon icons" data-format="strikeThrough" data-bs-toggle="tooltip" data-bs-title="Strike Through">
+                                    <img src="./icons/strike_through-icon.svg" alt="Strike through">
+                                </span>
+                            </div>
+                            <div class="chat-input-container">
+                                <div class="message-editor">
+                                    <div id="message-input" contenteditable="true" data-placeholder="Enter message.."></div>
+                                </div>
+                                <button class="send-msg-btn">
+                                    <img src="./icons/send-icon.svg" alt="Send Icon">
+                                </button>
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+   </main>
+   <!-- Check for username before loading chat -->
+   <script>
+        // Redirect to join page if no username is set
+        if (!sessionStorage.getItem('username')) {
+            window.location.href = 'user-join.html';
+        }
+    </script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="utils.js" type="module" defer></script>
+    <script src="chat.js" type="module" defer></script>
+    <script src="room-management.js" type="module" defer></script>
+</body>
+</html>

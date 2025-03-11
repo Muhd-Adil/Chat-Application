@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    padding: 0;
+    margin: 0 !important;
+    box-sizing: border-box;
+    font-family: "Poppins", serif;
+    overflow-x: none;
+}
+
+nav{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 12vh;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+}
+
+nav .logo{
+    font-weight: 600;
+    background: linear-gradient(to right, rgb(2, 154, 255), rgb(219, 38, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.main-container{
+    height: 88vh;
+}
+
+.msg{
+    font-size: 2rem;
+    font-weight: 500;
+    background: linear-gradient(to right, rgb(2, 154, 255), rgb(219, 38, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.input-container{
+    position: relative;
+    min-width: 350px;
+    min-height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    gap: 1rem;
+}
+
+.input-container input{
+    width: 300px;
+}
+
+#username-input{
+    padding: 10px 10px;
+    border: 1px solid #d0d0d0;
+    border-radius: 10px;
+    width: 90%;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+}
+
+#username-input.error{
+    border: 1px solid red !important;
+}
+
+#username-input:focus{
+    border: 1px solid #007bff;
+}
+
+.error-text{
+    display: none;
+    color: red;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 7.6rem;
+    left: 1.7rem;
+}
+
